@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class SecondMain {
 
+    public static void main(String[] args) {
+        System.out.println(filterByNameAndBreedType(initList()));
+    }
+
     private static List<Animal> initList() {
         List<Animal> animalList = new ArrayList<>();
         BreedType[] breedTypes = BreedType.values();
