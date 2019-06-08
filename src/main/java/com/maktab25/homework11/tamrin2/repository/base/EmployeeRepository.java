@@ -8,6 +8,8 @@ public interface EmployeeRepository extends BaseRepository<Employee> {
 
     Employee findTopBySalary(String city);
 
+    Long findTopSalaryByCity(String city);
+
     List<Employee> findAllByPostalCode(String postalCode);
 
     List<Employee> findAllByTelNumber(String telNumber);
