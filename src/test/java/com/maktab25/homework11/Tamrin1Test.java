@@ -18,4 +18,18 @@ public class Tamrin1Test {
         List list = (List) method.invoke(main);
         Assertions.assertEquals(99, list.size());
     }
+
+    @Test
+    public void testFilterMethod() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        SecondMain main = new SecondMain();
+        Method filter = SecondMain.class.getDeclaredMethod("filterByNameAndBreedType", List.class);
+        filter.setAccessible(true);
+        Method init = SecondMain.class.getDeclaredMethod("initList");
+        init.setAccessible(true);
+        List list = (List) init.invoke(main);
+        List list1 = (List) filter.invoke(main, list);
+        Assertions.assertEquals(11, list1.size());
+
+
+    }
 }
