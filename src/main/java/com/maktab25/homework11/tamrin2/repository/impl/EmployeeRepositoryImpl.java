@@ -33,6 +33,16 @@ public class EmployeeRepositoryImpl extends BaseRepositoryImpl<Employee> impleme
     }
 
     @Override
+    public Long findTopSalaryByCity(String city) {
+        Session session = factory.openSession();
+
+        Long salary = session.createQuery("select max(e.salary) from Employee e , Address a where a.city = ?1", Long.class)
+                .setParameter(1, city).getSingleResult();
+        return salary;
+
+    }
+
+    @Override
     public List<Employee> findAllByPostalCode(String postalCode) {
         Session session = factory.openSession();
         List<Employee> list = session.createQuery("select e from Employee e , Address a " +
@@ -48,7 +58,10 @@ public class EmployeeRepositoryImpl extends BaseRepositoryImpl<Employee> impleme
         Session session = factory.openSession();
 //
 
-        List<Employee> list1 = session.createQuery("select e from Employee e join e.addresses a join a.numbers n where n.telNumber=?1", Employee.class)
+        List<Employee> list1 = session.createQuery("select e from Employee e " +
+                "join e.addresses a " +
+                "join a.numbers n " +
+                "where n.telNumber=?1", Employee.class)
                 .setParameter(1, telNumber)
                 .list();
         return list1;
