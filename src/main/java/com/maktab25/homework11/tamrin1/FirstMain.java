@@ -2,6 +2,8 @@ package com.maktab25.homework11.tamrin1;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class FirstMain {
     public static void main(String[] args) {
@@ -57,5 +59,19 @@ public class FirstMain {
                 new Cat("cat97", BreedType.Turkish_Angora), new Cat("cat98", BreedType.Toyger),
                 new Cat("cat99", BreedType.Turkish_Van));
 
+
+        Function<Cat, BreedType> change = Cat::getBreedType;
+        List sdgsdgg = asfasf.stream().filter(cat -> {
+            if (cat instanceof Cat) {
+                if (((Cat) cat).getBreedType().toString().startsWith("A") ||
+                        ((Cat) cat).getBreedType().toString().startsWith("C") ||
+                        ((Cat) cat).getBreedType().toString().startsWith("P"))
+                    return true;
+            }
+            return false;
+        }).filter(cat -> Integer.parseInt(cat.getName().substring(3)) % 2 == 0)
+                .map(c -> change.apply((Cat) c)).collect(Collectors.toList());
+
+        System.out.println(sdgsdgg);
     }
 }
