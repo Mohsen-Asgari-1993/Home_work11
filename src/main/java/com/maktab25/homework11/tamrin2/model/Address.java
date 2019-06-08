@@ -30,10 +30,7 @@ public class Address implements Serializable {
     @Column(name = "city")
     private String city;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,
-            CascadeType.MERGE,
-            CascadeType.PERSIST,
-            CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn(name = "emp_id")
     private Employee employee;
 
